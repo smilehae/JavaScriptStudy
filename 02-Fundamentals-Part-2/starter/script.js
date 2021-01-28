@@ -53,30 +53,97 @@
 // console.log(yearsUntilRetirement(1999, 'mihae'));
 
 ////////////////////////////////////////////
-// coding Challenge 1
-let Dolphins1 = 44, Dolphins2 = 23, Dolphins3 = 71;
-let Koalas1 = 65, Koalas2 = 54, Koalas3 = 49;
+// // coding Challenge 1
+// let Dolphins1 = 44, Dolphins2 = 23, Dolphins3 = 71;
+// let Koalas1 = 65, Koalas2 = 54, Koalas3 = 49;
 
-Dolphins1 = 85, Dolphins2 = 54, Dolphins3 = 41;
-Koalas1 = 23, Koalas2 = 34, Koalas3 = 27;
+// Dolphins1 = 85, Dolphins2 = 54, Dolphins3 = 41;
+// Koalas1 = 23, Koalas2 = 34, Koalas3 = 27;
 
-const calcAverage = (a, b, c) => (a + b + c) / 3;
+// const calcAverage = (a, b, c) => (a + b + c) / 3;
 
-const avgDolhins = calcAverage(Dolphins1, Dolphins2, Dolphins3);
+// const avgDolhins = calcAverage(Dolphins1, Dolphins2, Dolphins3);
 
-const avgKoalas = calcAverage(Koalas1, Koalas2, Koalas3);
+// const avgKoalas = calcAverage(Koalas1, Koalas2, Koalas3);
 
-const checkWinner = function (DolphinAvg, KoalasAvg) {
-    if (DolphinAvg >= KoalasAvg * 2) {
-        console.log(`Dolphins win (${DolphinAvg} vs. ${KoalasAvg})`);
-    }
-    else if (KoalasAvg >= DolphinAvg * 2) {
-        console.log(`Koalas win ( ${KoalasAvg} vs. ${DolphinAvg} )`);
+// const checkWinner = function (DolphinAvg, KoalasAvg) {
+//     if (DolphinAvg >= KoalasAvg * 2) {
+//         console.log(`Dolphins win (${DolphinAvg} vs. ${KoalasAvg})`);
+//     }
+//     else if (KoalasAvg >= DolphinAvg * 2) {
+//         console.log(`Koalas win ( ${KoalasAvg} vs. ${DolphinAvg} )`);
+//     }
+//     else {
+//         console.log('no one wins...');
+//     }
+// }
+
+// console.log(checkWinner(avgDolhins, avgKoalas));
+
+////////////////////////////////////////////
+//ARRAY
+
+// //보편적인 방법
+// const friends = ['Mihae', 'Pyun', 'Jonghae'];
+// console.log(friends);
+// console.log(friends[2]);
+// console.log(friends.length);
+
+// const newFriend = new Array('Mihee', 'Pyun', 'Jonghae');
+// console.log(newFriend);
+
+// const firstName = 'Mihae';
+// const mihae = [firstName, 'Pyun', 2021 - 1999, 'student', friends];
+// console.log(mihae);
+
+
+// const years = [1999, 1967, 2018];
+
+// const calcAge = birthYear => 2021 - birthYear;
+
+// console.log(calcAge(years[1]));
+// // /////////////////////////////////////
+// // ARRAY METHOD
+// const friends = ['Mihae', 'Juhyun'];
+// //push를 하면 하나 추가
+
+// const newLength = friends.push('JiHyun');
+// console.log(newLength); // push 메소드는 총 배열의 갯수 반환
+
+// const popElement = friends.pop(); //뒤쪽 요소 삭제
+// console.log(popElement); //pop된 element 저장함
+// console.log(friends);
+
+// friends.shift();
+// console.log(friends); //앞쪽 요소 삭제
+
+// console.log(friends.indexOf('Juhyun'));
+// //값이 있을때는, 위치의 index 반환, 없으면 -1 반환
+
+// //ES6에서 추가된 것. array에 존재하면 true 리턴, 없으면 false 리턴
+// console.log(friends.includes('Juhyun'));
+// console.log(friends.includes('23'));
+
+
+////////////////////////////////
+//Coding Challenge2
+
+let biil = 100;
+
+function calcTip(bill) {
+    if (bill >= 50 && bill <= 300) {
+        tip = 0.15 * bill;
     }
     else {
-        console.log('no one wins...');
+        tip = 0.2 * bill;
     }
+    return tip;
 }
 
-console.log(checkWinner(avgDolhins, avgKoalas));
+let bills = new Array(125, 555, 44);
+let tips = new Array(calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2]));
+
+let totals = new Array(bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]);
+
+console.log(totals);
 
