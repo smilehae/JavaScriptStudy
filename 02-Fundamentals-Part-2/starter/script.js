@@ -133,7 +133,7 @@ console.log(friends.includes('23'));
 
 //////////////////////////////
 
-Coding Challenge2
+//Coding Challenge2
 
 let biil = 100;
 
