@@ -2,6 +2,7 @@
 
 [강의 출처](https://www.udemy.com/course/the-complete-javascript-course/)
 
+[강의 ](https://www.notion.so/c6534e3c32e548c88d3f9a8ed5462866)
 
 ### 현재 공부 기록
 Part 1 ✔  
