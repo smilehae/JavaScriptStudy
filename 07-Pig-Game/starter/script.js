@@ -117,9 +117,10 @@ btnNewGame.addEventListener('click', function () {
   current1.textContent = 0;
   gameFin = false;
   if (getActivePlayer() === 'player0') {
-    player0.classList.remove('player--winner');
-  } else {
+    /*반대로 바꾸는 이유 : 게임오버 이후 한번 swap 됨 */
     player1.classList.remove('player--winner');
+  } else {
+    player0.classList.remove('player--winner');
   }
 
   player0.classList.add('player--active');
