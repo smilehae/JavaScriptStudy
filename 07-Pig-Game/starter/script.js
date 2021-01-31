@@ -60,6 +60,10 @@ btnRoll.addEventListener('click', function () {
     let diceString = 'dice-' + String(diceNum) + '.png';
     dice.src = diceString;
 
+    if (dice.classList.contains('hidden')) {
+      dice.classList.remove('hidden');
+    }
+
     if (diceNum === 1) {
       if (getActivePlayer() === 'player0') {
         currentScore0 = 0;
@@ -69,14 +73,14 @@ btnRoll.addEventListener('click', function () {
         current1.textContent = 0;
       }
       swapPlayer();
-    }
-
-    if (getActivePlayer() === 'player0') {
-      currentScore0 += diceNum;
-      current0.textContent = currentScore0;
     } else {
-      currentScore1 += diceNum;
-      current1.textContent = currentScore1;
+      if (getActivePlayer() === 'player0') {
+        currentScore0 += diceNum;
+        current0.textContent = currentScore0;
+      } else {
+        currentScore1 += diceNum;
+        current1.textContent = currentScore1;
+      }
     }
   }
 });
@@ -125,4 +129,6 @@ btnNewGame.addEventListener('click', function () {
 
   player0.classList.add('player--active');
   player1.classList.remove('player--active');
+
+  dice.classList.add('hidden');
 });
