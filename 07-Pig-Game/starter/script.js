@@ -20,19 +20,16 @@ const btnNewGame = document.querySelector('.btn--new');
 /*dice*/
 const dice = document.querySelector('.dice');
 
-let currentScore0 = 0;
-let currentScore1 = 0;
-let score0 = 0;
-let score1 = 0;
+let curScore = 0;
 
-const current0 = document.getElementById('current--0');
-const current1 = document.getElementById('current--1');
+let score = [0, 0];
 
-const scoreText0 = document.getElementById('score--0');
-const scoreText1 = document.getElementById('score--1');
+let activePlayer = 0;
 
 /*function*/
 const swapPlayer = function () {
+  curScore = 0;
+  /*
   if (player0.classList.contains('player--active')) {
     player1.classList.add('player--active');
     player0.classList.remove('player--active');
@@ -40,15 +37,20 @@ const swapPlayer = function () {
     player0.classList.add('player--active');
     player1.classList.remove('player--active');
   }
+*/
+  player0.classList.toggle('player--active');
+  player1.classList.toggle('player--active');
+  if (activePlayer === 0) {
+    activePlayer = 1;
+  } else {
+    activePlayer = 0;
+  }
+  console.log(`Active player is ${activePlayer}`);
 };
 
-const getActivePlayer = function () {
-  if (player0.classList.contains('player--active')) {
-    return 'player0';
-  } else {
-    return 'player1';
-  }
-};
+function getActivePlayer() {
+  return activePlayer;
+}
 
 let diceNum = 5;
 let gameFin = false;
@@ -57,7 +59,7 @@ btnRoll.addEventListener('click', function () {
   /* 주사위 굴려서 그림 + 변수 반영*/
   if (!gameFin) {
     diceNum = Math.trunc(Math.random() * 6 + 1);
-    let diceString = 'dice-' + String(diceNum) + '.png';
+    let diceString = `dice-${diceNum}.png`;
     dice.src = diceString;
 
     if (dice.classList.contains('hidden')) {
@@ -65,62 +67,52 @@ btnRoll.addEventListener('click', function () {
     }
 
     if (diceNum === 1) {
-      if (getActivePlayer() === 'player0') {
-        currentScore0 = 0;
-        current0.textContent = 0;
-      } else {
-        currentScore1 = 0;
-        current1.textContent = 0;
-      }
+      curScore = 0;
+      /* querySelector로 설정하는 내용은 어차피 스트링이니까, 여기서 변수 이용하면 된다*/
+      document.querySelector(
+        `#current--${getActivePlayer()}`
+      ).textContent = curScore;
+
       swapPlayer();
     } else {
-      if (getActivePlayer() === 'player0') {
-        currentScore0 += diceNum;
-        current0.textContent = currentScore0;
-      } else {
-        currentScore1 += diceNum;
-        current1.textContent = currentScore1;
-      }
+      curScore += diceNum;
+      document.querySelector(
+        `#current--${getActivePlayer()}`
+      ).textContent = curScore;
     }
   }
 });
 
 btnHold.addEventListener('click', function () {
   if (!gameFin) {
-    if (getActivePlayer() === 'player0') {
-      score0 += currentScore0;
-      scoreText0.textContent = score0;
-      currentScore0 = 0;
-      current0.textContent = 0;
-      if (score0 >= 100) {
-        player0.classList.add('player--winner');
-        gameFin = true;
-      }
-    } else {
-      score1 += currentScore1;
-      scoreText1.textContent = score1;
-      currentScore1 = 0;
-      current1.textContent = 0;
-      if (score1 >= 100) {
-        player1.classList.add('player--winner');
-        gameFin = true;
-      }
+    score[getActivePlayer()] += curScore;
+    document.getElementById(`score--${activePlayer}`).textContent =
+      score[getActivePlayer()];
+
+    if (score[getActivePlayer()] >= 100) {
+      document
+        .querySelector(`.player--${getActivePlayer()}`)
+        .classList.add('player--winner');
+      gameFin = true;
     }
+
+    curScore = 0;
+    document.getElementById(`current--${getActivePlayer()}`).textContent = 0;
     swapPlayer();
   }
 });
 
 btnNewGame.addEventListener('click', function () {
-  score0 = 0;
-  scoreText0.textContent = 0;
-  score1 = 0;
-  scoreText1.textContent = 0;
-  currentScore0 = 0;
-  currentScore1 = 0;
-  current0.textContent = 0;
-  current1.textContent = 0;
+  score[0] = 0;
+  score[1] = 0;
+  document.querySelector('#score--0').textContent = 0;
+  document.querySelector('#score--1').textContent = 0;
+
+  curScore = 0;
+  document.querySelector('#current--0').textContent = 0;
+  document.querySelector('#current--1').textContent = 0;
   gameFin = false;
-  if (getActivePlayer() === 'player0') {
+  if (getActivePlayer() === 0) {
     /*반대로 바꾸는 이유 : 게임오버 이후 한번 swap 됨 */
     player1.classList.remove('player--winner');
   } else {
