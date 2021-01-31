@@ -44,6 +44,10 @@ const restaurant = {
       `Order received!. ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time} `
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta ${ing1}, ${ing2}, ${ing3}`);
+  },
 };
 
 restaurant.orderDelivery({
@@ -132,4 +136,45 @@ console.log(p, q, r);
 */
 
 /////////////////////////////////////////////
-//Destructuring Object
+// Spreading (ES6)
+
+const arr = [7, 8, 9];
+// 위 aray 앞에 2개 추가하고 싶어!
+const badNewArray = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArray);
+
+const newArray = [1, 2, ...arr]; /// ...이 spread operator임.
+// arr이라는 것의 요소를 꺼내서 하나씩 일일히 집어넣는다는 뜻.
+//여기서 spread operator 을 제거하게 되면, 그냥 [1,2,[7,8,9]]; 이렇게 통째로 들어가버린다.
+console.log(...newArray); //1,2,7,8,9 이렇게 나옴!
+
+const newMenu = [...restaurant.mainMenu, 'Gnocci', 'Margeritta'];
+console.log(...newMenu);
+
+//spread operator과 destructuring 차이
+//spread operator은 element를 array에서 다 꺼내고, 새로운 변수를 만들지 않는다. 따라서 콤마로 구분되어야 하는 곳에만 사용하기 좋다.
+
+//Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
+
+const menu = [...restaurant.starterMenu, ...restaurant.starterMenu];
+console.log(menu);
+
+//sprea opretator은 iterable 한 것들에만 적용된다. ( array, string, map, set 등. object 제외)
+const str = 'jonas';
+const letters = [...str, ' ', 's'];
+console.log(letters);
+
+const ingredients = [
+  prompt(`Let's make pasta! Ingredient 1?`),
+  prompt(`Ingredient 2?`),
+  prompt(`Ingredient 3?`),
+];
+//restaurant.orderPasta(ingredients[0],ingredients[1], ingredients[2]) 대신
+restaurant.orderPasta(...ingredients);
+
+console.log(ingredients);
+
+//Object에 spread 적용
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Mihae' };
+console.log(newRestaurant);
