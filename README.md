@@ -9,8 +9,11 @@ Part 1 ✔
 Part 2 ✔  
 Part 3 ✔    
 Part 4 ✔   
-Part 5 (Project 1) ✔   
-Part 6 (Project 2) 👀   
+Part 5 (developer skill : node.js 깔기 등) ✔   
+Part 6 (HTML, CSS기초) ✔   
+Part 7 (DOM에 대해 : Project 1, 2,3) ✔ 
+Part 8 (Javascript 동작방식)  ❌
+Part 9 (데이터구조, 모던 JS) 👀   
 
 
 # 강의 일지
